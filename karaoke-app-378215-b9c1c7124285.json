@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "karaoke-app-378215",
+  "private_key_id": "b9c1c7124285c4fc92bec51bf17685a458225bc3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCqaW8jTJ90Odef\nOgQT/Gt/BCWWZNAfLIMtrb1He4I8h670oa1aKgrZbVZU19OcUIy/4doYI/141pi/\nAfE0pU+0RHCUagbbnaTlo0bR+6bZ71CJ3sJcGpheKKVbgLNbMEPt847J2+c5UlFN\nkkwtMbhgp1tf2XEOgmu6r9SrbfH5zxOQZLM38IODt6Y4CbrAM1mHhnGiQheCcSmQ\noc8nULlADJjaCotz1P/Bq1jt7JD84Eh6ou4FKSlLbmtQwQavZsMlSiAOoNz03Epb\n+HSDcX2aLZETbqhQ62ab6Fu+m6z23iclFIY/KVEvZuHBcZJ8nY1/KpmJL0kd2C4n\n7sot0pBXAgMBAAECggEAJA8OTMZcYUASD6e7kC0T4/sRJwsq/MWy9jnyuMr6Kmu9\nihch8te9lvdrUqWeqc9jkQCt4PjQnD6wcI5tJyopvOfUeJsc22C2sT7E8A7TZf8d\nKCdCMjIQdrAcGUoY6Z1DanjkiHMnMLpp6MOhqdiA/ra6/4OnyB2xxP2Kv0GS97xQ\necoNfLNIlJfvo7Z7yd2hCpk2pn/aIN0H41BKeLiWtpJ42mBwaVvQS/kNYz/WRtSu\nYSJnGIZJlGyhL2xnBX+T8b6nWyNkALqJ5x2znzD1tfgGl4kP8NnN3DKNJZrAJuEz\nEDUfZYnHLMfi54e4oK+6ngy/jgSfC2TCOjDPswyEGQKBgQDfvX+YAbj3A70qGd53\niTzgqNEUM8URfA9eRmTr4DQ31RdHkXxmsHVOkYRLZTibfHJfPxCHvyLu/mpXnLpv\nIKqqYaBkJDzEU+V9bMC+1CICU47arsJ00/37z87MvmFPUOVc+YBpDQ6fFsmioBVI\niJGLBUOwqI3or52lWNFi5FK9bwKBgQDC+4acincjy20JZuj4nBJzXVLm1CGmumxz\nSsBd8BjVR9McmaMlcNLmm3c/XyA899dmOPH+GkjUvwFVZMhhovAXcpn56NhSCdr/\nJzcka/Jlij7RkzoduYmnMyNrWdY49LCZ7PUVsqQaGeMKxNNFzSmkbKQB1L9yk7BB\nHBNfS9u3mQKBgDbhGUnkqkTUgvKvs7SoUeldHyOQazcVsgNSyvBcZxKGzxX75oKd\np7hk0wlXQ6JHzRn1sw1I4b2zY8wnokcdwR7XoWrOxKT3WyP/p+tmxwzBCBo1oXbc\nhMDeQQBRdjbpRckfXdLmo/57rWuZTn8jGGf8G5VaUqyPXuCuv3U9Qdo7AoGAeLd/\nJOX5Uzj7/ekv7dO6/J/X1r+ZQf+Da3HpXX9r8IgyZS+duW17tXilQJ/ldrm/KzOw\nZzDgzI6hBbyK7yAQ44N5XydQ3qHpazVdR3hpr4IC2H/9aC/Z0KGxmSIaplKgD/yL\n1G4weVRzo9QuNbYKxRjaBaQxD3/ujLEUMVjm5GkCgYEAzUC/b77Pvd3oyL1ijLmU\nRk9/uHfi/8lJDDm3fVtBPWYjJaYFNZdlOpVO6cPTYgEdGXaPXQ5caCQHkidw5ZVF\nmZaqHFA0542wh/Klt+A8JRUDP1sc2PxIv3fP8/f2nybBqLcc9MoPKxqiXvJUdFIG\nhQcvJBklcIZUtzCojgreHy8=\n-----END PRIVATE KEY-----\n",
+  "client_email": "karaoke-app@karaoke-app-378215.iam.gserviceaccount.com",
+  "client_id": "111559553181892566089",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/karaoke-app%40karaoke-app-378215.iam.gserviceaccount.com"
+}
