@@ -66,9 +66,9 @@ function Tailwind() {
               Bring Everyone to sing better
             </h1>
             <p className="max-w-md text-center text-darkGrayishBlue md:max-w-sm md:text-left">
-              Sing your heart out with our karaoke app featuring a vast library
+{`              Sing your heart out with our karaoke app featuring a vast library
               of songs from different genres, a recording option, and an
-              enjoyable and entertaining experience for all.
+              enjoyable and entertaining experience for all.`}
             </p>
             <div className="flex justify-center md:justify-start">
               <a
@@ -97,12 +97,12 @@ function Tailwind() {
           {/* What's Different */}
           <div className="flex flex-col space-y-12 md:w-1/2">
             <h2 className="max-w-md text-center text-4xl font-bold md:text-left">
-              What's Different about karaoke
+              {`What's Different about karaoke`}
             </h2>
             <p className="max-w-md text-center text-darkGrayishBlue md:text-left">
-              Our karaoke app sets itself apart with its vast library of songs
+{`              Our karaoke app sets itself apart with its vast library of songs
               from different genres, recording option, and an enjoyable
-              experience for all.
+              experience for all.`}
             </p>
           </div>
 
@@ -116,20 +116,20 @@ function Tailwind() {
                     01
                   </div>
                   <h3 className="text-base font-bold md:mb-4 md:hidden">
-                    Track company-wide progress
+{`                    Track company-wide progress`}
                   </h3>
                 </div>
               </div>
 
               <div>
                 <h3 className="mb-4 hidden text-lg font-bold md:block">
-                  Track company-wide progress
+{`                  Track company-wide progress`}
                 </h3>
                 <p className="text-darkGrayishBlue">
-                  See how your day-to-day tasks fit into the wider vision. Go
+{`                  See how your day-to-day tasks fit into the wider vision. Go
                   from tracking progress at the milestone level all the way down
                   to the smallest of details. Never lose sight of the bigger
-                  picture again.
+                  picture again.`}
                 </p>
               </div>
             </div>
@@ -150,10 +150,10 @@ function Tailwind() {
                   Track company-wide progress
                 </h3>
                 <p className="text-darkGrayishBlue">
-                  See how your day-to-day tasks fit into the wider vision. Go
+{`                  See how your day-to-day tasks fit into the wider vision. Go
                   from tracking progress at the milestone level all the way down
                   to the smallest of details. Never lose sight of the bigger
-                  picture again.
+                  picture again.`}
                 </p>
               </div>
             </div>
@@ -174,10 +174,10 @@ function Tailwind() {
                   Track company-wide progress
                 </h3>
                 <p className="text-darkGrayishBlue">
-                  See how your day-to-day tasks fit into the wider vision. Go
+{`                  See how your day-to-day tasks fit into the wider vision. Go
                   from tracking progress at the milestone level all the way down
                   to the smallest of details. Never lose sight of the bigger
-                  picture again.
+                  picture again.`}
                 </p>
               </div>
             </div>
@@ -189,7 +189,7 @@ function Tailwind() {
       <section id="testimonials">
         <div className="mx-auto mt-32 max-w-6xl px-5 text-center">
           <h2 className="text-center text-4xl font-bold">
-            What's different with karaoke
+{`            What's different with karaoke`}
           </h2>
           <div className="mt-24 flex flex-col gap-y-12 md:flex-row md:gap-y-0 md:space-x-6">
             <div className="flex flex-col items-center space-y-6 rounded-lg bg-veryLightGray p-6 md:w-1/3">
@@ -200,9 +200,9 @@ function Tailwind() {
               />
               <h5 className="text-lg font-bold">Anisha Li</h5>
               <p className="text-sm text-darkGrayishBlue">
-                “Manage has supercharged our team’s workflow. The ability to
+{`                “Manage has supercharged our team’s workflow. The ability to
                 maintain visibility on larger milestones at all times keeps
-                everyone motivated."
+                everyone motivated."`}
               </p>
             </div>
             <div className="flex flex-col items-center space-y-6 rounded-lg bg-veryLightGray p-6 md:w-1/3">
@@ -213,9 +213,9 @@ function Tailwind() {
               />
               <h5 className="text-lg font-bold">Anisha Li</h5>
               <p className="text-sm text-darkGrayishBlue">
-                “Manage has supercharged our team’s workflow. The ability to
+{`                “Manage has supercharged our team’s workflow. The ability to
                 maintain visibility on larger milestones at all times keeps
-                everyone motivated."
+                everyone motivated."`}
               </p>
             </div>
             <div className="flex flex-col items-center space-y-6 rounded-lg bg-veryLightGray p-6 md:w-1/3">
@@ -226,9 +226,9 @@ function Tailwind() {
               />
               <h5 className="text-lg font-bold">Anisha Li</h5>
               <p className="text-sm text-darkGrayishBlue">
-                “Manage has supercharged our team’s workflow. The ability to
+{`                “Manage has supercharged our team’s workflow. The ability to
                 maintain visibility on larger milestones at all times keeps
-                everyone motivated."
+                everyone motivated."`}
               </p>
             </div>
           </div>
