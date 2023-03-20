@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { initFirebase } from "../../firebase/clientApp";
+import { initFirebase } from "../../firebaseApp/clientApp";
 import ytsr from "ytsr";
 import {
   arrayUnion,

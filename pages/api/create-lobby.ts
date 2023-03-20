@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { initFirebase } from "firebase/clientApp";
+import { initFirebase } from "@/firebaseApp/clientApp";
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useCollection } from "react-firebase-hooks/firestore"
 import { getFirestore, QueryDocumentSnapshot } from "firebase/firestore";

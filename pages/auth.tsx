@@ -1,6 +1,6 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import React from "react";
-import { initFirebase } from "../firebase/clientApp";
+import { initFirebase } from "../firebaseApp/clientApp";
 
 // // Configure FirebaseUI.
 // const uiConfig = {

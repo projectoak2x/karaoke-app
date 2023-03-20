@@ -1,6 +1,6 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import React, { useEffect, useState } from "react";
-import { initFirebase } from "../firebase/clientApp";
+import { initFirebase } from "../firebaseApp/clientApp";
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useCollection } from "react-firebase-hooks/firestore"
 import { DocumentData, getFirestore, query, QueryDocumentSnapshot, QuerySnapshot } from "firebase/firestore";

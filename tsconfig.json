@@ -19,6 +19,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "firebase/clientApp.tsx", "pages/test.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "firebaseApp/clientApp.tsx", "pages/test.js"],
   "exclude": ["node_modules"]
 }
