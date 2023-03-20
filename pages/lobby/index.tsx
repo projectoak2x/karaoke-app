@@ -140,9 +140,9 @@ const pauseAudio = () => {
                       return <div key={item.songId}>{item.songTitle}</div>;
                     })}
                     {lobby.songList && <video id="video-player" key={lobby.songList[videoIndex].songId} controls autoPlay className="w-96 h-auto" onPlay={playAudio} onPause={pauseAudio} onKeyUp={(e)=>seekVideo(e)} >
-                      <source src={`api/stream-video/?id=${lobby.songList[videoIndex].songId}`} />
+                      <source src={`api/stream-video?id=${lobby.songList[videoIndex].songId}`} />
                       <audio id="audio-player" controls>
-                        <source src={`api/stream-audio/?id=${lobby.songList[videoIndex].songId}`} />
+                        <source src={`api/stream-audio?id=${lobby.songList[videoIndex].songId}`} />
                       </audio>
                     </video> }
                     <button
