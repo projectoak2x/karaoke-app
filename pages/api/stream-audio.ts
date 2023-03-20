@@ -20,21 +20,16 @@ export default async function handler(
     const videoInfo = await ytdl.getInfo(url);
     const format = ytdl.chooseFormat(videoInfo.formats, { filter: 'audioonly' });
     const contentLength = format.contentLength || 0;
-    console.log(contentLength)
-
     res.setHeader('Content-Type', format.mimeType);
     res.setHeader('Accept-Ranges', 'bytes');
-
     const range = req.headers.range;
     if (range) {
       const parts = range.replace(/bytes=/, '').split('-');
       const start = parseInt(parts[0], 10);
       const end = parts[1] ? parseInt(parts[1], 10) : contentLength - 1;
-
       res.setHeader('Content-Range', `bytes ${start}-${end}/${contentLength}`);
       res.setHeader('Content-Length', (end - start) + 1);
       res.status(206);
-
       ytdl.downloadFromInfo(videoInfo, { format, range: { start, end } }).pipe(res);
     } else {
       res.setHeader('Content-Length', contentLength);

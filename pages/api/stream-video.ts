@@ -20,8 +20,6 @@ export default async function handler(
     const videoInfo = await ytdl.getInfo(url);
     const format = ytdl.chooseFormat(videoInfo.formats, { filter: 'videoonly' });
     const contentLength = format.contentLength || 0;
-    console.log(contentLength)
-
     res.setHeader('Content-Type', format.mimeType);
     res.setHeader('Accept-Ranges', 'bytes');
 
