@@ -137,7 +137,7 @@ const pauseAudio = () => {
                 <div>
                   {lobby.songList &&
                     lobby.songList.map((item: any, index: number) => {
-                      return <div>{item.songTitle}</div>;
+                      return <div key={item.songId}>{item.songTitle}</div>;
                     })}
                     {lobby.songList && <video id="video-player" key={lobby.songList[videoIndex].songId} controls autoPlay className="w-96 h-auto" onPlay={playAudio} onPause={pauseAudio} onKeyUp={(e)=>seekVideo(e)} >
                       <source src={`api/stream-video/?id=${lobby.songList[videoIndex].songId}`} />
@@ -162,7 +162,7 @@ const pauseAudio = () => {
                 <div className="flex flex-col space-y-1">
                 {searchResult.map((item:any,index:number)=>{
                   return (
-                    <div onClick={()=>AddSong(item)}>
+                    <div key={item.id} onClick={()=>AddSong(item)}>
                       <h6>{item.title}</h6>
                       <img src={item.thumbnails[1]?item.thumbnails[1].url:item.thumbnails[0].url} alt="" className="h-auto max-w-full" />
                     </div>
