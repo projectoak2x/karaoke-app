@@ -1,5 +1,4 @@
 import { ChangeEvent, useState } from "react";
-import bcrypt from "bcrypt";
 
 function LobbyModal(props:any) {
   const [showPassword, setShowPassword] = useState(false);

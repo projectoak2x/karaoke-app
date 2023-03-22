@@ -6,7 +6,6 @@ import { addDoc, collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import bcrypt from "bcrypt";
 
 function Home() {
   const router = useRouter();
@@ -32,11 +31,11 @@ function Home() {
   const CreateLobby = async () => {
     try {
       const password = lobbyDetails.password;
-      const saltRounds = 10;
-      const hashedPassword = bcrypt.hashSync(password, saltRounds);
+      // const saltRounds = 10;
+      // const hashedPassword = bcrypt.hash(password, saltRounds);
       const docRef = await addDoc(collection(db, "lobbies"), {
         lobbyName: lobbyDetails.lobbyName,
-        lobbyPassword: hashedPassword,
+        lobbyPassword: password,
       });
       localStorage.setItem("lobby", docRef.id);
       router.push("/lobby");
