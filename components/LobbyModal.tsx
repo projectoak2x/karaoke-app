@@ -1,70 +1,20 @@
-import { initFirebase } from "../firebaseApp/clientApp";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollection } from "react-firebase-hooks/firestore";
-import { getFirestore, QueryDocumentSnapshot } from "firebase/firestore";
-import { addDoc, collection, getDocs } from "firebase/firestore";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { useRouter } from "next/router";
+import { ChangeEvent, useState } from "react";
 import bcrypt from "bcrypt";
 
-function Home() {
-  const router = useRouter();
-  const [showModal, setShowModal] = useState(false);
+function LobbyModal(props:any) {
   const [showPassword, setShowPassword] = useState(false);
-  const [lobbyDetails, setLobbyDetails] = useState({
-    lobbyName: "",
-    password: "",
-  });
-  const app = initFirebase();
-  const db = getFirestore(app);
 
-  const ToggleModal = () => {
-    setShowModal(!showModal);
-  };
 
-  const handleChange = (key: string, value: string) => {
-    setLobbyDetails((prev) => {
-      return { ...prev, [key]: value };
-    });
-  };
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    props.onChange("password", e.target.value)
+  }
 
-  const CreateLobby = async () => {
-    try {
-      const password = lobbyDetails.password;
-      const saltRounds = 10;
-      const hashedPassword = bcrypt.hashSync(password, saltRounds);
-      const docRef = await addDoc(collection(db, "lobbies"), {
-        lobbyName: lobbyDetails.lobbyName,
-        lobbyPassword: hashedPassword,
-      });
-      localStorage.setItem("lobby", docRef.id);
-      router.push("/lobby");
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
-  };
-
-  useEffect(() => {});
   return (
     <>
-      <nav className="container relative mx-auto p-6">
-        <div className="flex items-center justify-between">
-          <div id="logo" className="logo">
-            This is Logo
-          </div>
-          <div className="flex justify-between space-x-6">
-            <a href="#">
-              <button onClick={() => ToggleModal()}>Create Lobby</button>
-            </a>
-            <a href="tailwind">Search Lobby</a>
-          </div>
-        </div>
-      </nav>
       <div>
         <div
           className={`fixed top-0 left-0 z-10 w-full overflow-y-auto ${
-            showModal ? "" : "hidden"
+            props.show ? "" : "hidden"
           }`}
           id="modal"
         >
@@ -86,15 +36,15 @@ function Home() {
                 <input
                   type="text"
                   className="mt-2 mb-3 w-full bg-gray-100 p-2"
-                  onChange={(e) => handleChange("lobbyName", e.target.value)}
-                  required
+                  value={props.lobbyDetails.lobbyName}
+                  readOnly
                 />
                 <label>Password</label>
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
                     className="mt-2 mb-3 w-full bg-gray-100 p-2"
-                    onChange={(e) => handleChange("password", e.target.value)}
+                    onChange={(e) => handleChange(e)}
                     required
                   />
                   <div
@@ -133,16 +83,16 @@ function Home() {
                 <button
                   type="button"
                   className="mr-2 rounded bg-gray-500 py-2 px-4 text-white hover:bg-gray-700"
-                  onClick={() => ToggleModal()}
+                  onClick={() => {props.toggleModal()}}
                 >
                   <i className="fas fa-times"></i> Cancel
                 </button>
                 <button
                   type="button"
                   className="mr-2 rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-700"
-                  onClick={() => CreateLobby()}
+                  onClick={() => props.onJoin()}
                 >
-                  <i className="fas fa-plus"></i> Create
+                  <i className="fas fa-plus"></i> Join
                 </button>
               </div>
             </div>
@@ -153,4 +103,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default LobbyModal;
