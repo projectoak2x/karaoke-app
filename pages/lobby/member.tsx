@@ -30,11 +30,9 @@ function SingleLobby() {
   const [videoIndex, setVideoIndex] = useState<number>(0);
   const [lobbyId, setLobbyId] = useState("");
   const [isMaster, setIsMaster] = useState(false);
-  const [retryCount, setRetryCount] = useState(0);
-  const [predownload, setPredownload] = useState(false);
-  const [video, setVideo] = useState("");
 
-  const { lobbyDetails, setLobbyDetails, show, toggleModal, handleChange } = useLobby();
+  const { lobbyDetails, setLobbyDetails, show, toggleModal, handleChange } =
+    useLobby();
 
   const SelectLobby = (item: any) => {
     setLobbyDetails((prevState) => {
@@ -49,11 +47,12 @@ function SingleLobby() {
       // const password = props.lobbyDetails.password;
       // const saltRounds = 10;
       // const hashedPassword = bcrypt.compare(password, saltRounds));
-      if (lobbyDetails.password === lobby.password) console.log(lobby);
-      localStorage.setItem("lobby", lobby.id);
-      setInLobby(true);
-      setLobbyId(lobby.id);
-      toggleModal();
+      if (lobbyDetails.password === lobby.password)
+      console.log(lobby)
+        localStorage.setItem("lobby", lobby.id);
+        setInLobby(true);
+        setLobbyId(lobby.id)
+        toggleModal();
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -70,7 +69,7 @@ function SingleLobby() {
     setLobbies(
       docSnapshot.docs.map((docs) => {
         const docBuffer = docs.data();
-        docBuffer.id = docs.id;
+        docBuffer.id = docs.id
         return docBuffer;
       })
     );
@@ -84,14 +83,16 @@ function SingleLobby() {
   // };
 
   useEffect(() => {
-    if (lobbyId == "") return;
+    if(lobbyId=="") return
+
     const itemsRef = doc(db, "lobbies", lobbyId);
     const unsubscribe = onSnapshot(itemsRef, (snapshot) => {
-      console.log(snapshot.data());
+      console.log(snapshot.data())
       const docBuffer = snapshot.data() ?? {};
-      docBuffer.id = snapshot.id;
+      docBuffer.id = snapshot.id
       setLobby(docBuffer);
     });
+
     return () => unsubscribe();
   }, [lobbyId]);
 
@@ -107,7 +108,8 @@ function SingleLobby() {
     } else {
       getLobbies();
     }
-    if (localStorage.getItem("videoIndex")) setVideoIndex(parseInt(localStorage.getItem("videoIndex") ?? "0"));
+    if (localStorage.getItem("videoIndex"))
+      setVideoIndex(parseInt(localStorage.getItem("videoIndex") ?? "0"));
     else localStorage.setItem("videoIndex", "0");
   }, []);
 
@@ -117,7 +119,8 @@ function SingleLobby() {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(async () => {
       const search =
-        e.target.value.includes("karaoke") || e.target.value.includes("instrumental")
+        e.target.value.includes("karaoke") ||
+        e.target.value.includes("instrumental")
           ? e.target.value
           : e.target.value + " karaoke";
       const youtubeSearch = await axios.get("api/search-video", {
@@ -126,18 +129,23 @@ function SingleLobby() {
       setSearchResult(youtubeSearch.data.videos);
     }, 400);
   };
-  async function videoEnd(e: any) {
+  function videoEnd(e: any) {
     // What you want to do after the event
-    const removePrevious = lobby.songList.filter((item: any) => item.songId == video)[0];
-    RemoveSong(removePrevious);
-    setPredownload(false);
+    console.log("end");
+    if (lobby.songList.length > videoIndex + 1) {
+      setVideoIndex(videoIndex + 1);
+      localStorage.setItem("videoIndex", (videoIndex + 1).toString());
+    }
   }
 
   function Next() {
+    // What you want to do after the event
+    console.log(videoIndex);
     console.log("Next");
-    const removePrevious = lobby.songList.filter((item: any) => item.songId == video)[0];
-    RemoveSong(removePrevious);
-    setPredownload(false);
+    if (lobby.songList.length > videoIndex + 1) {
+      setVideoIndex(videoIndex + 1);
+      localStorage.setItem("videoIndex", (videoIndex + 1).toString());
+    }
   }
 
   function Previous() {
@@ -150,44 +158,51 @@ function SingleLobby() {
     }
   }
 
-  const handleVideoError = () => {
-    if (retryCount < 3) {
-      setTimeout(() => {
-        setVideoIndex(videoIndex); // replace with your video source URL
-        setRetryCount(retryCount + 1);
-      }, 1000); // retry after 1 second
+  const playAudio = () => {
+    const audioPlayer = document?.getElementById(
+      "audio-player"
+    ) as HTMLMediaElement;
+    const videoPlayer = document?.getElementById(
+      "video-player"
+    ) as HTMLMediaElement;
+    audioPlayer.currentTime = videoPlayer?.currentTime;
+    audioPlayer?.play();
+  };
+
+  const seekVideo = (e: React.KeyboardEvent<HTMLVideoElement>) => {
+    if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+      const audioPlayer = document?.getElementById(
+        "audio-player"
+      ) as HTMLMediaElement;
+      const videoPlayer = document?.getElementById(
+        "video-player"
+      ) as HTMLMediaElement;
+      audioPlayer.currentTime = videoPlayer.currentTime;
     }
   };
 
-  const checkIfVideoHasStart = (event: any) => {
-    const { currentTime } = event.target;
-
-    if (currentTime > 5 && !predownload) {
-      if (lobby.songList.length > 1) {
-        axios.get(`api/download-video`, {
-          params: { id: lobby.songList[1].songId, lobby: lobbyId },
-        })
-        setPredownload(true);
-        console.log("predownload");
-      }
-    }
+  const pauseAudio = () => {
+    const audioPlayer = document?.getElementById(
+      "audio-player"
+    ) as HTMLMediaElement;
+    const videoPlayer = document?.getElementById(
+      "video-player"
+    ) as HTMLMediaElement;
+    audioPlayer.currentTime = videoPlayer.currentTime;
+    audioPlayer?.pause();
   };
 
   useEffect(() => {
-    if (lobby.songList && lobby.songList.length) {
-      axios.get(`api/download-video`, {
-        params: { id: lobby.songList[0].songId, lobby: lobbyId },
-      }).then(()=>{
-        setVideo(lobby.songList[0].songId);
-      });
-    }else{
-      setVideo("")
-    }
-  }, [lobby]);
+    document
+      ?.getElementById("video-player")
+      ?.addEventListener("ended", videoEnd, false);
+    // let audioPlayer = document?.getElementById('audio-player');
+    // document?.getElementById('video-player')?.addEventListener('onplay',playAudio,false);
+  });
 
   const AddSong = async (item: any) => {
     console.log(item);
-    console.log(lobbyId);
+    console.log(lobbyId)
     const lobbyRef = doc(db, "lobbies", lobbyId);
     const newSong = {
       songId: item.id,
@@ -196,15 +211,11 @@ function SingleLobby() {
       user: "test-user",
     };
     await updateDoc(lobbyRef, { songList: arrayUnion(newSong) });
-    window.scrollTo(0, 0);
   };
 
   const RemoveSong = async (item: any) => {
     const lobbyRef = doc(db, "lobbies", lobbyId);
     await updateDoc(lobbyRef, { songList: arrayRemove(item) });
-    axios.get(`api/delete-video`, {
-      params: { id: item.songId, lobby: lobbyId },
-    })
   };
 
   return (
@@ -213,63 +224,26 @@ function SingleLobby() {
         <div>
           {inLobby ? (
             <div>
-              <div>
-                <div className="flex flex-col md:flex-row">
-                  {isMaster
-                    ? lobby.songList && (
-                        <div className="ml-5 mt-5 w-full bg-indigo-500 flex flex-col justify-center">
-                          {lobby.songList.length && video != "" ? 
-                              <video
-                                id="video-player"
-                                controls
-                                autoPlay
-                                className="h-auto w-full"
-                                onTimeUpdate={checkIfVideoHasStart}
-                                onError={handleVideoError}
-                                onEnded={videoEnd}
-                                src={`./downloads/${lobbyId}/${video}.mp4`}
-                              />
-                            :
-                            <div className="px-5 text-center">
-                              {lobby.songList.length?"Loading song":"Please select a song"}
-                            </div>
-                          }
-                        </div>
-                      )
-                    : ""}
-                  <div className="px-5 pt-5">
-                    Song List:
-                    {lobby.songList &&
-                      lobby.songList.map((item: any, index: number) => {
-                        return (
-                          <div className="border-2 p-2" key={item.songId}>
-                            {item.songTitle}
-                            <span onClick={() => RemoveSong(item)}> remove</span>
-                          </div>
-                        );
-                      })}
-                    {isMaster && <button onClick={() => Next()}>next</button>}
-                  </div>
-                  {/* <button onClick={LeaveLobby}>leave</button> */}
-                </div>
-              </div>
               <div className="p-5">
                 <input
                   type="text"
                   placeholder="Search"
-                  name="youtube-search"
                   onChange={(e) => SearchVideo(e)}
-                  className="mt-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                  className="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
-                <div className="flex flex-row flex-wrap gap-2.5 pt-5 justify-center">
+                <div className="flex flex-col space-y-1">
                   {searchResult.map((item: any, index: number) => {
                     return (
-                      <div key={item.id} onClick={() => AddSong(item)} className="w-96 cursor-pointer">
+                      <div key={item.id} onClick={() => AddSong(item)}>
                         <h6>{item.title}</h6>
                         <img
-                          src={item.thumbnails[1] ? item.thumbnails[1].url : item.thumbnails[0].url}
+                          src={
+                            item.thumbnails[1]
+                              ? item.thumbnails[1].url
+                              : item.thumbnails[0].url
+                          }
                           alt=""
-                          className="h-auto w-full"
+                          className="h-auto max-w-full"
                         />
                       </div>
                     );
