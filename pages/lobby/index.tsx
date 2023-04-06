@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState, useRef } from "react";
 import { initFirebase } from "../../firebaseApp/clientApp";
 import ytsr from "ytsr";
 import {
@@ -33,6 +33,8 @@ function SingleLobby() {
   const [retryCount, setRetryCount] = useState(0);
   const [predownload, setPredownload] = useState(false);
   const [video, setVideo] = useState("");
+  const divRef = useRef<HTMLDivElement>(null);
+
 
   const { lobbyDetails, setLobbyDetails, show, toggleModal, handleChange } = useLobby();
 
@@ -207,6 +209,14 @@ function SingleLobby() {
     })
   };
 
+  const handleFullscreenClick = () => {
+    if (divRef.current) {
+      if (divRef.current.requestFullscreen) {
+        divRef.current.requestFullscreen();
+      }
+    }
+  };
+
   return (
     <>
       <div>
@@ -217,7 +227,7 @@ function SingleLobby() {
                 <div className="flex flex-col md:flex-row">
                   {isMaster
                     ? lobby.songList && (
-                        <div className="ml-5 mt-5 w-full bg-indigo-500 flex flex-col justify-center">
+                        <div className="ml-5 mt-5 w-full bg-indigo-500 flex flex-col justify-center" ref={divRef} onClick={handleFullscreenClick}>
                           {lobby.songList.length && video != "" ? 
                               <video
                                 id="video-player"

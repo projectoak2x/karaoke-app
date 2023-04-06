@@ -35,7 +35,7 @@ export default async function handler(
 ) {
   const { id, lobby } = req.query;
 
-  const destination = `./public/downloads/${lobby}/${id}.mp4`
+  const destination = `/var/www/downloads/${lobby}/${id}.mp4`
 
   // Set the video URL based on the video ID
   // const file = fs.createWriteStream(`./public/downloads/${id}.mp4`);
