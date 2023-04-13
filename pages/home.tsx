@@ -38,6 +38,8 @@ function Home() {
         lobbyPassword: password,
       });
       localStorage.setItem("lobby", docRef.id);
+      localStorage.setItem("createdLobby", docRef.id);
+      axios.post("api/create-lobby",{folderName: docRef.id});
       router.push("/lobby");
     } catch (e) {
       console.error("Error adding document: ", e);

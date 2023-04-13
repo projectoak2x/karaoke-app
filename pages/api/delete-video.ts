@@ -9,7 +9,7 @@ export default async function handler(
 ) {
   const { id, lobby } = req.query;
 
-  const destination = `/var/www/downloads/${lobby}/${id}.mp4`
+  const destination = `${process.env.NEXT_PUBLIC_DOWNLOAD_PATH}${lobby}/${id}.mp4`
 
   if (!fs.existsSync(destination)) {
     console.log('File don\'t exists at destination:', destination);
